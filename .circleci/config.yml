@@ -31,13 +31,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python -m venv venv
-            . venv/bin/activate
             python -m pip install -r requirements_dev.txt
 
       - save_cache:
-          paths:
-            - ./venv
           key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       # run tests!
@@ -45,7 +41,6 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
             export PYTHONPATH=`pwd`;
             pytest -x --cov=./ --junitxml=test-reports/junit.xml tests -vv
             bash <(curl -s https://codecov.io/bash)
@@ -85,13 +80,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python -m venv venv
-            . venv/bin/activate
             python -m pip install -r requirements_dev.txt
 
       - save_cache:
-          paths:
-            - ./venv
           key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       # run tests!
@@ -99,7 +90,6 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
             export PYTHONPATH=`pwd`;
             pytest -x --cov=./ --junitxml=test-reports/junit.xml tests -vv
 
@@ -138,13 +128,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python -m venv venv
-            . venv/bin/activate
             python -m pip install -r requirements_dev.txt
 
       - save_cache:
-          paths:
-            - ./venv
           key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       # run tests!
@@ -152,7 +138,6 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
             export PYTHONPATH=`pwd`;
             pytest -x --cov=./ --junitxml=test-reports/junit.xml tests -vv
 
@@ -175,16 +160,12 @@ jobs:
       - run:
           name: install python dependencies
           command: |
-            python -m venv venv
-            . venv/bin/activate
             pip install coverage codecov pylint twine sphinx sphinx-autobuild sphinx_rtd_theme
             pip install -r requirements.txt
             pip install -e .
             
       - save_cache:
           key: v1-dependency-cache-{{ checksum "setup.py" }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "venv"
 
       - run:
           name: init .pypirc
@@ -200,7 +181,6 @@ jobs:
       - run:
           name: upload to pypi
           command: |
-            . venv/bin/activate
             twine upload dist/*
 
 workflows:
