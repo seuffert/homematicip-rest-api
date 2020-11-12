@@ -34,6 +34,7 @@ jobs:
             python -m pip install -r requirements_dev.txt
 
       - save_cache:
+          paths:
           key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       # run tests!
@@ -83,6 +84,7 @@ jobs:
             python -m pip install -r requirements_dev.txt
 
       - save_cache:
+          paths:
           key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       # run tests!
@@ -131,6 +133,7 @@ jobs:
             python -m pip install -r requirements_dev.txt
 
       - save_cache:
+          paths:
           key: v1-dependencies-{{ checksum "requirements_dev.txt" }}
         
       # run tests!
@@ -166,6 +169,7 @@ jobs:
             
       - save_cache:
           key: v1-dependency-cache-{{ checksum "setup.py" }}-{{ checksum "requirements.txt" }}
+          paths:
 
       - run:
           name: init .pypirc
