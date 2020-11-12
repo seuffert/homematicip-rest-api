@@ -207,6 +207,18 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
+      - test_3_6:
+          filters:
+            tags:
+              only: /.*/
+      - test_3_7:
+          filters:
+            tags:
+              only: /.*/
+      - test_3_8:
+          filters:
+            tags:
+              only: /.*/
       - deploy:
           requires:
             - test_3_6
